@@ -5,6 +5,9 @@ namespace BDApp.Data
 {
     public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : IdentityDbContext(options)
     {
+        public DbSet<ConstructionProject> Projects { get; set; }
+        public DbSet<ConstructionWorker> Workers { get; set; }
+        public DbSet<Material> Materials { get; set; }
     }
 
     public class ConstructionProject
