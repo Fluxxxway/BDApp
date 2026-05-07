@@ -3,8 +3,139 @@
 @{
     ViewData["Title"] = "Home page";
 }
+@{
+    Layout = null;
+}
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BDApp - Строим вместе</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bd-blue: #0A3D66;
+            --bd-orange: #F27C22;
+        }
+
+        body {
+            font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f8f9fa;
+        }
+
+        /* Наша синяя шапка */
+        .navbar-bd {
+            background-color: var(--bd-blue);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .navbar-bd .navbar-brand { color: white; font-weight: bold; }
+        .navbar-bd .nav-link { color: rgba(255, 255, 255, 0.8); }
+        .navbar-bd .nav-link:hover { color: var(--bd-orange); }
+
+        /* Оранжевый баннер */
+        .hero-banner {
+            background: linear-gradient(135deg, var(--bd-orange) 0%, #F5A623 100%);
+            color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(242, 124, 34, 0.3);
+        }
+
+        .btn-bd-primary {
+            background-color: var(--bd-blue);
+            color: white;
+            font-weight: bold;
+            border: none;
+        }
+        .btn-bd-primary:hover { background-color: #062844; color: white; }
+
+        /* Карточки */
+        .feature-card {
+            border: 2px solid var(--bd-blue);
+            border-radius: 12px;
+            background-color: white;
+            transition: transform 0.2s;
+        }
+        .feature-card:hover { transform: translateY(-5px); }
+        
+        footer {
+            background-color: var(--bd-blue);
+            color: white;
+        }
+        footer a { color: var(--bd-orange); text-decoration: none; }
+    </style>
+</head>
+<body class="d-flex flex-column min-vh-100">
+
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-bd mb-4 py-2">
+            <div class="container">
+                <a class="navbar-brand" href="#">🏗️ BDApp</a>
+                <div class="d-flex justify-content-between flex-grow-1">
+                    <ul class="navbar-nav flex-row gap-3">
+                        <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Privacy</a></li>
+                    </ul>
+                    <ul class="navbar-nav flex-row gap-3">
+                        <li class="nav-item"><a class="nav-link" href="#">Register</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Login</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container flex-grow-1">
+        
+        <div class="text-center mb-5">
+            <h1 class="display-4 fw-bold" style="color: var(--bd-blue);">Welcome to BDApp</h1>
+            <h4 class="text-muted">Construction database management</h4>
+        </div>
+
+        <div class="hero-banner p-5 text-center mb-5">
+            <h2 class="mb-3 fw-bold">Build a robust database of construction objects with BDApp</h2>
+            <h5 class="mb-4 text-light">Строим вместе</h5>
+            <a href="#" class="btn btn-bd-primary btn-lg px-5 py-3 shadow">Start Now</a>
+        </div>
+
+        <div class="row g-4 text-center justify-content-center mb-5">
+            <div class="col-md-4">
+                <div class="card feature-card h-100 p-4">
+                    <div class="card-body">
+                        <h4 style="color: var(--bd-orange);">📂</h4>
+                        <h5 class="card-title fw-bold" style="color: var(--bd-blue);">Object Hub</h5>
+                        <p class="card-text">Centralized storage for all project sites and documentation.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card feature-card h-100 p-4">
+                    <div class="card-body">
+                        <h4 style="color: var(--bd-orange);">⚙️</h4>
+                        <h5 class="card-title fw-bold" style="color: var(--bd-blue);">Planning Tools</h5>
+                        <p class="card-text">Schedule phases and track construction progress.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card feature-card h-100 p-4">
+                    <div class="card-body">
+                        <h4 style="color: var(--bd-orange);">📊</h4>
+                        <h5 class="card-title fw-bold" style="color: var(--bd-blue);">Analytics</h5>
+                        <p class="card-text">Generate insights for informed decisions.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="py-3 text-center mt-auto">
+        <div class="container">
+            &copy; 2026 - BDApp - <a href="#">Privacy</a>
+        </div>
+    </footer>
+
+</body>
+</html>
