@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Reflection.Metadata;
 
 namespace BDApp.Models
 {
@@ -13,7 +14,7 @@ namespace BDApp.Models
         public string? Description { get; set; }
 
         [Required]
-        public string InviteCode { get; set; }
+        public string InviteCodeHash { get; set; } = string.Empty;
 
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
