@@ -1,0 +1,189 @@
+@page
+@model BDApp.Pages.Projects.IndexModel
+@{
+    ViewData["Title"] = "Мои проекты";
+    Layout = null; // 🔥 Отключаем стандартный Layout для полного контроля стилей
+}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - BDApp</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <style>
+        /* --- ПАЛИТРА "НА ПОЛТОНА ТЕМНЕЕ" (копия с главной) --- */
+        :root {
+            --bd-bg: #121214;
+            --bd-card: #1c1c1f;
+            --bd-border: #2d2d33;
+            --bd-text: #ffffff;
+            --bd-text-muted: #c4c4c8;
+            --bd-accent: #ffffff;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bd-bg);
+            color: var(--bd-text);
+        }
+
+        /* Навигация */
+        .navbar-bd {
+            background-color: var(--bd-card);
+            border-bottom: 1px solid var(--bd-border);
+        }
+        .navbar-bd .navbar-brand { color: var(--bd-text); font-weight: bold; letter-spacing: 1px; }
+        .navbar-bd .nav-link { color: var(--bd-text-muted); transition: color 0.2s; }
+        .navbar-bd .nav-link:hover { color: var(--bd-accent); text-shadow: 0 0 8px rgba(255,255,255,0.3); }
+
+        /* Карточки проектов */
+        .feature-card {
+            border: 1px solid var(--bd-border);
+            border-radius: 8px;
+            background-color: var(--bd-card);
+            transition: all 0.3s ease;
+        }
+        .feature-card:hover { 
+            transform: translateY(-8px); 
+            border-color: #5a5a63;       
+            box-shadow: 0 15px 30px rgba(0,0,0,0.7), 0 0 15px rgba(255, 255, 255, 0.03); 
+        }
+        .feature-card .card-title { color: #ffffff !important; }
+        .feature-card .card-text { color: var(--bd-text-muted) !important; }
+
+        /* Кнопки */
+        .btn-bd-primary {
+            background-color: transparent;
+            color: var(--bd-accent);
+            font-weight: bold;
+            border: 2px solid var(--bd-accent);
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+        .btn-bd-primary:hover { 
+            background-color: var(--bd-accent); 
+            color: #000000;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px); 
+        }
+        .btn-outline-light {
+            border-color: var(--bd-border);
+            color: var(--bd-text-muted);
+        }
+        .btn-outline-light:hover {
+            background-color: var(--bd-accent);
+            color: #000;
+            border-color: var(--bd-accent);
+        }
+
+        /* Алерты */
+        .alert {
+            background-color: var(--bd-card);
+            border: 1px solid var(--bd-border);
+            color: var(--bd-text-muted);
+        }
+        .alert strong { color: var(--bd-text); }
+
+        /* Подвал */
+        footer {
+            border-top: 1px solid var(--bd-border);
+            background-color: var(--bd-bg);
+            color: var(--bd-text-muted);
+            margin-top: auto;
+        }
+        footer a { color: var(--bd-text-muted); text-decoration: none; transition: color 0.2s;}
+        footer a:hover { color: var(--bd-text); }
+
+        /* Иконки */
+        .mono-icon {
+            filter: grayscale(100%) contrast(200%) brightness(150%);
+        }
+    </style>
+</head>
+<body class="d-flex flex-column min-vh-100">
+
+    <!-- 🔁 Навигация (копия с главной) -->
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-bd mb-5 py-3">
+            <div class="container">
+                <a class="navbar-brand mono-icon" href="/">🏗️ BDApp</a>
+                <div class="d-flex justify-content-between flex-grow-1">
+                    <ul class="navbar-nav flex-row gap-4">
+                        <li class="nav-item"><a class="nav-link" href="/">Главная</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/Privacy">Конфиденциальность</a></li>
+                    </ul>
+                    <partial name="_LoginPartial" />
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- 🔷 Основной контент -->
+    <main class="container flex-grow-1">
+        
+        <div class="d-flex justify-content-between align-items-center mb-5">
+            <h1 class="display-5 fw-bold">Мои проекты</h1>
+            <a href="/Projects/Create" class="btn btn-bd-primary">+ Новый проект</a>
+        </div>
+
+        @if (!Model.Projects.Any())
+        {
+            <div class="alert text-center py-4">
+                <h5 class="mb-2">📭 Пока нет проектов</h5>
+                <p class="mb-3">Создай первый проект, чтобы начать работу с документацией.</p>
+                <a href="/Projects/Create" class="btn btn-bd-primary">Создать проект</a>
+            </div>
+        }
+        else
+        {
+            <div class="row g-4">
+                @foreach (var project in Model.Projects)
+                {
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card feature-card h-100 p-4">
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title fw-bold mb-2">@project.Name</h5>
+                                
+                                @if (!string.IsNullOrEmpty(project.Description))
+                                {
+                                    <p class="card-text flex-grow-1">
+                                        @(project.Description.Length > 100 
+                                            ? project.Description.Substring(0, 100) + "..." 
+                                            : project.Description)
+                                    </p>
+                                }
+                                else
+                                {
+                                    <p class="card-text text-muted flex-grow-1">Нет описания</p>
+                                }
+                                
+                                <div class="mt-auto pt-3 border-top" style="border-color: var(--bd-border) !important;">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <small class="text-muted">
+                                            📅 @project.CreatedAt.ToString("dd.MM.yyyy")
+                                        </small>
+                                        <a href="/Components?projectId=@project.Id" 
+                                           class="btn btn-sm btn-outline-light">
+                                            Открыть →
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+    </main>
+
+    <!-- 🔻 Подвал (копия с главной) -->
+    <footer class="py-4 text-center mt-auto">
+        <div class="container">
+            &copy; 2026 - BDApp - <a href="/Privacy">Политика конфиденциальности</a>
+        </div>
+    </footer>
+
+</body>
+</html>

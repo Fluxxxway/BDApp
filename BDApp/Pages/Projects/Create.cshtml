@@ -1,0 +1,20 @@
+@page
+@model BDApp.Pages.Projects.CreateModel
+@{ ViewData["Title"] = "Создать проект"; }
+
+<div class="container py-5">
+    <h1 class="h3 mb-4">Новый проект</h1>
+    
+    <form method="post" class="card p-4" style="max-width: 500px;">
+        <div class="mb-3">
+            <label class="form-label">Название проекта *</label>
+            <input name="Name" class="form-control" required placeholder="Например: Вентиляция Цех-3" />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Описание</label>
+            <textarea name="Description" class="form-control" rows="3"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Создать</button>
+        <a href="/Projects" class="btn btn-link">Отмена</a>
+    </form>
+</div>
