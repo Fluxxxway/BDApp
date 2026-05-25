@@ -7,6 +7,7 @@ namespace BDApp.Pages
     {
         public void OnGet()
         {
+            
         }
     }
 

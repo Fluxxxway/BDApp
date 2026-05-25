@@ -5,7 +5,12 @@ namespace BDApp.Data
 {
     public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : IdentityDbContext(options)
     {
+<<<<<<< Updated upstream
     }
+=======
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+            : base(options) { }
+>>>>>>> Stashed changes
 
     public class ConstructionProject
     {
