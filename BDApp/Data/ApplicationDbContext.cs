@@ -6,6 +6,12 @@ namespace BDApp.Data
 {
     public class ApplicationDbContext : IdentityDbContext
     {
+        // 🔥 Конструктор с параметрами — без пробелов в синтаксисе
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) 
+            : base(options)
+        {
+        }
+
         public DbSet<Project> Projects => Set<Project>();
         public DbSet<Component> Components => Set<Component>();
         public DbSet<ComponentFile> ComponentFiles => Set<ComponentFile>();

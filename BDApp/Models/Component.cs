@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal;
 using System.ComponentModel.DataAnnotations;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BDApp.Models
@@ -33,7 +32,7 @@ namespace BDApp.Models
         public string? Description { get; set; }
 
         [Required, StringLength(50)]
-        public string Status { get; set; }
+        public string Status { get; set; } = "Planned";
 
         [StringLength(2000)]
         public string? Notes { get; set; }
