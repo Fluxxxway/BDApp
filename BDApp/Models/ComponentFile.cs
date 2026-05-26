@@ -37,7 +37,6 @@ namespace BDApp.Models
         public string? Notes { get; set; }
     }
 
-    // Конкретный тип из 567 документов
     public class DocumentType
     {
         [Key]
@@ -49,9 +48,9 @@ namespace BDApp.Models
         [ForeignKey("CategoryId")]
         public DocumentCategory Category { get; set; } = null!;
 
-        public string Name { get; set; } = null!; // "Акт освидетельствования скрытых работ"
+        public string Name { get; set; } = null!;
 
-        public string? Code { get; set; } // Код по классификатору
+        public string? Code { get; set; }
 
         public string? Description { get; set; }
     }
