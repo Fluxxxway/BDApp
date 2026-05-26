@@ -10,11 +10,9 @@ namespace BDApp
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // 🔥 Строка подключения БЕЗ лишних пробелов
             var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")
                 ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 
-            // 🔥 Правильный синтаксис: <T> и => без пробелов
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlite(connectionString));
 
