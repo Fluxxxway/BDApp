@@ -6,7 +6,6 @@ namespace BDApp.Data
 {
     public class ApplicationDbContext : IdentityDbContext
     {
-        // 🔥 Конструктор с параметрами — без пробелов в синтаксисе
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) 
             : base(options)
         {
